@@ -6,7 +6,7 @@
 
 How to run
 
-git clone git@github.com:sashokrist/CreditSystem.git
+git clone git@github.com:sashokrist/Credit-Payment-System.git
 
 composer install
 
@@ -16,9 +16,7 @@ php artisan key:generate
 
 Set database credentials in .env
 
-php artisan migrate
-
-php artisan db:seed
+php artisan migrate --seed
 
 php artisan serve
 
@@ -41,6 +39,4 @@ Route::get('/payments/create', [PaymentController::class, 'createPayment'])->nam
 // Route for handling the form submission to make a payment for a given loan
 Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
 
-// Route for displaying all payments
-Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
 
