@@ -62,8 +62,12 @@ class LoanService
         return $totalAmountLoans + $loanAmount <= 80000;
     }
 
-    public function deleteZeroAmountLoans()
+    public function deleteZeroAmountLoansOneWeekAfter()
     {
-        Loan::where('amount', 0.00)->delete();
+        $dateOneWeekAgo = now()->subWeek();
+
+        Loan::where('amount', 0.00)
+            ->where('updated_at', '<=', $dateOneWeekAgo)
+            ->delete();
     }
 }

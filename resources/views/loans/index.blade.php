@@ -30,7 +30,7 @@
                             </thead>
                             <tbody>
                             @foreach ($loans as $loan)
-                                <tr>
+                                <tr class="{{ $loan->amount == 0 ? 'table-success' : '' }}">
                                     <td>{{ $loan->id }}</td>
                                     <td>{{ $loan->borrower_name }}</td>
                                     <td>{{ $loan->amount }} лв.</td>
