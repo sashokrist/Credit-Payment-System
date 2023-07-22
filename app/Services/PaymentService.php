@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Exceptions\PaymentException;
 use App\Models\Loan;
 use App\Models\Payment;
-use http\Exception\RuntimeException;
+use RuntimeException;
 
 class PaymentService
 {

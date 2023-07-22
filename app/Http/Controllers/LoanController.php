@@ -22,6 +22,9 @@ class LoanController extends Controller
 
     public function index()
     {
+        // Delete all records where the amount is equal to 0.00
+        $this->loanService->deleteZeroAmountLoans();
+
         $loans = Loan::orderByDesc('created_at')->paginate(10);
 
         return view('loans.index', compact('loans'));
