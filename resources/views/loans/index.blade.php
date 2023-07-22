@@ -65,6 +65,6 @@
     <script>
         setTimeout(function () {
             $('.alert').fadeOut('slow');
-        }, 3000);
+        }, 15000);
     </script>
 @endsection

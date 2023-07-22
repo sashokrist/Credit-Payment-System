@@ -45,7 +45,7 @@ class PaymentController extends Controller
         } catch (Throwable $e) {
             if ($e instanceof(PaymentException::class)){
                 Log::critical($e->getMessage());
-                return redirect()->back()->with('warning', $e->getMessage());
+                return redirect()->route('loans.index')->with('warning', $e->getMessage());
             } else {
                 Log::critical($e->getMessage());
                 return redirect()->back()->with('error', 'An error occurred while making the payment.');
