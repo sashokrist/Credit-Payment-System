@@ -9,6 +9,13 @@ use RuntimeException;
 
 class PaymentService
 {
+    private $loanService;
+
+    // function __construct(argument) to load LoanService
+    public function __construct(LoanService $loanService)
+    {
+        $this->loanService = $loanService;
+    }
     /**
      * Check if the total amount of loans for the borrower exceeds BGN 80,000
      *
@@ -20,6 +27,14 @@ class PaymentService
     {
         // Calculate the remaining amount due for the loan
         $remainingAmount = $loan->amount;
+        //dd($remainingAmount);
+        // call calculateMonthlyPayment function from LoanService and save to variable
+        $monthlyPayment = $this->loanService->calculateMonthlyPayment($loan->amount, $loan->term);
+
+        // check if amountToBePaid is less than monthlyPayment
+        if ($amountToBePaid < $monthlyPayment) {
+            throw new PaymentException(sprintf('Сумата за плащане трябва да е поне %d лв.', $monthlyPayment));
+        }
 
         if ($amountToBePaid > $remainingAmount) {
             $remainingAmount = $amountToBePaid - $remainingAmount;
@@ -30,5 +45,14 @@ class PaymentService
         }
         $loan->amount = $remainingAmount - $amountToBePaid;
         $loan->save();
+    }
+
+    public function isAmountPaidEnough(Loan $loan, $amount): bool
+    {
+        // Calculate the remaining amount due for the loan
+        $remainingAmount = $loan->amount;
+
+        // Check if the payment amount exceeds the remaining amount due
+        return $amount >= $remainingAmount;
     }
 }
