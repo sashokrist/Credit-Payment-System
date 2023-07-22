@@ -41,14 +41,14 @@ class PaymentController extends Controller
 
         try {
             $paymentSuccessful = $this->paymentService->makePayment($loan, $request->amount);
-            return redirect()->route('loans.index')->with('success', 'Payment made successfully.');
+            return redirect()->route('loans.index')->with('success', 'Плащането е успешно.');
         } catch (Throwable $e) {
             if ($e instanceof(PaymentException::class)){
                 Log::critical($e->getMessage());
                 return redirect()->route('loans.index')->with('warning', $e->getMessage());
             } else {
                 Log::critical($e->getMessage());
-                return redirect()->back()->with('error', 'An error occurred while making the payment.');
+                return redirect()->back()->with('error', 'Грешка при плащаето!');
             }
         }
     }

@@ -46,13 +46,4 @@ class PaymentService
         $loan->amount = $remainingAmount - $amountToBePaid;
         $loan->save();
     }
-
-    public function isAmountPaidEnough(Loan $loan, $amount): bool
-    {
-        // Calculate the remaining amount due for the loan
-        $remainingAmount = $loan->amount;
-
-        // Check if the payment amount exceeds the remaining amount due
-        return $amount >= $remainingAmount;
-    }
 }

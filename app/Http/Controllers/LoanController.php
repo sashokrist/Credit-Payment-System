@@ -45,7 +45,7 @@ class LoanController extends Controller
             $isTotalLoansAmountValid = $this->loanService->checkTotalLoansAmount($request->borrower_name, $request->amount);
 
             if (!$isTotalLoansAmountValid) {
-                return redirect()->back()->with('error', 'The total amount of loans for this borrower exceeds BGN 80,000.');
+                return redirect()->back()->with('error', 'Общият размер на кредитите за този кредитополучател надхвърля 80 000 лева.');
             }
 
             $loan = Loan::create($request->all());
