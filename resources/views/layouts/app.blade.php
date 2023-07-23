@@ -42,9 +42,9 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('loans.index') }}">
-                                        Кредити
-                                    </a>
+{{--                                    <a class="nav-link" href="{{ route('loans.index') }}">--}}
+{{--                                        Кредити--}}
+{{--                                    </a>--}}
                                 </li>
                                 <li class="nav-item">
                                     <button type="button" class="btn btn-primary" data-toggle="modal"

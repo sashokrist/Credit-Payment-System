@@ -40,7 +40,7 @@ class PaymentService
             $remainingAmount = $amountToBePaid - $remainingAmount;
             $loan->amount = 0;
             $loan->save();
-            throw new PaymentException(sprintf('Вие платих те (%d) лв. повече от колкото дължите сумата ще ви бъде приспадната и остатъка ввърнат! Сума за получаване: (%d) лв. ',
+            throw new PaymentException(sprintf('Вие платихте (%d) лв. пяовече от колкото дължите сумата ще ви бъде приспадната и остатъка ввърнат! Сума за получаване: (%d) лв. ',
                 $amountToBePaid, $remainingAmount ));
         }
         $loan->amount = $remainingAmount - $amountToBePaid;
