@@ -6,6 +6,7 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@nextapps-be/livewire-sortablejs": "^0.2.0",
         "@popperjs/core": "^2.11.6",
         "@vitejs/plugin-vue": "^4.0.0",
         "axios": "^1.1.2",
