@@ -47,7 +47,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('loans.create') }}">Вземи Кредит</a>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#exampleModal2"> Вземи кредит
+                                    </button>
                                 </li>
 {{--                                <li class="nav-item">--}}
 {{--                                    <a class="nav-link" href="{{ route('payments.index') }}">Плащания</a>--}}
@@ -93,7 +95,39 @@
                 </div>
             </div>
         </nav>
-
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Кредит Система</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h2 class="text-center">Вземи кредит</h2>
+                        <form action="{{ route('loans.store') }}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="borrower_name">Име на получателя:</label>
+                                <input type="text" class="form-control" id="borrower_name" name="borrower_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="amount">Сума (BGN):</label>
+                                <input type="number" class="form-control" id="amount" name="amount" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="term">Период (месеци):</label>
+                                <input type="number" class="form-control" id="term" name="term" min="3" max="120" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Вземи</button>
+                        </form>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <main class="py-4">
             @yield('content')
         </main>
