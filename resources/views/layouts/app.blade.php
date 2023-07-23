@@ -122,7 +122,7 @@
                                 <input type="number" class="form-control" id="term" name="term" min="3" max="120" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Вземи</button>
-                        </form>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
                         </form>
                     </div>
                 </div>
