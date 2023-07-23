@@ -22,6 +22,7 @@ class LoanController extends Controller
 
     public function index()
     {
+        $this->loanService->deleteZeroAmountLoansOneWeekAfter();
         $loans = Loan::orderByDesc('created_at')->paginate(10);
 
         return view('loans.index', compact('loans'));
