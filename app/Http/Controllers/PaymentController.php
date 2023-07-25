@@ -41,9 +41,6 @@ class PaymentController extends Controller
             if ($e instanceof(PaymentException::class)){
                 Log::critical($e->getMessage());
                 return redirect()->route('loans.index')->with('warning', $e->getMessage());
-            } else {
-                Log::critical($e->getMessage());
-                return redirect()->back()->with('error', 'Грешка при плащаето!');
             }
         }
     }
