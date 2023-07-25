@@ -17,7 +17,6 @@ class LoanService
     public function calculateMonthlyInstallment($loanAmount)
     {
         $annualInterestRate = 0.079; // 7.9% annual interest rate
-
         // Calculate the annual interest amount
         $annualInterest = $loanAmount * $annualInterestRate;
 
@@ -35,10 +34,8 @@ class LoanService
     {
         $annualInterestRate = 0.079; // 7.9% annual interest rate
         $monthlyInterestRate = $annualInterestRate / 12; // Convert annual interest rate to monthly interest rate
-
         // Calculate the monthly payment amount using the formula for a fixed-rate loan payment
         $denominator = 1 - pow(1 + $monthlyInterestRate, -$loanTermMonths);
-
         // Check if the denominator is zero (infinite installment amount) to avoid division by zero
         if ($denominator === 0) {
             return 0;

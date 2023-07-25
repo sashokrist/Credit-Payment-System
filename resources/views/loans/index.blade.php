@@ -85,17 +85,26 @@
                                                 <select class="form-control" id="loan_id" name="loan_id" required>
                                                     <option value="" selected disabled>Избери кредит от списъка</option>
                                                     @foreach ($loans as $loan)
-                                                        <option value="{{ $loan->id }}">{{ $loan->borrower_name }} - BGN {{ $loan->amount }}</option>
+                                                        <option value="{{ $loan->id }}">{{ $loan->borrower_name }} -
+                                                            BGN {{ $loan->amount }} Мин. вноска
+                                                            @php
+                                                                $loanService = app(\App\Services\LoanService::class);
+                                                                $monthlyInstallment = $loanService->calculateMonthlyPayment($loan->amount, $loan->term);
+                                                                echo number_format($monthlyInstallment, 2);
+                                                            @endphp лв.
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="amount">Сума (BGN):</label>
-                                                <input type="number" class="form-control" id="amount" name="amount" min="1" required>
+                                                <input type="number" class="form-control" id="amount" name="amount"
+                                                       min="1" required>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-primary">Плати</button>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Затвори
                                                 </button>
                                             </div>
                                         </form>
