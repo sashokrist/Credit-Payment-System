@@ -27,10 +27,8 @@ class PaymentService
     {
         // Calculate the remaining amount due for the loan
         $remainingAmount = $loan->amount;
-        //dd($remainingAmount);
         // call calculateMonthlyPayment function from LoanService and save to variable
         $monthlyPayment = $this->loanService->calculateMonthlyPayment($loan->amount, $loan->term);
-
         // check if amountToBePaid is less than monthlyPayment
         if ($amountToBePaid < $monthlyPayment) {
             throw new PaymentException(sprintf('Сумата за плащане трябва да е поне %d лв.', $monthlyPayment));

@@ -115,7 +115,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="amount">Сума (BGN):</label>
-                                <input type="number" class="form-control" id="amount" name="amount" min="1" required>
+                                <input type="number" class="form-control" id="amount" name="amount" min="1" max="80000">
                             </div>
                             <div class="form-group">
                                 <label for="term">Период (месеци):</label>

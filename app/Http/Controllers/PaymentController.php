@@ -24,11 +24,6 @@ class PaymentController extends Controller
     {
         $this->paymentService = $paymentService;
     }
-    public function createPayment()
-    {
-        $loans = Loan::orderByDesc('created_at')->get();
-        return view('payments.create', compact('loans'));
-    }
 
     public function store(PaymentRequest $request)
     {
@@ -46,9 +41,6 @@ class PaymentController extends Controller
             if ($e instanceof(PaymentException::class)){
                 Log::critical($e->getMessage());
                 return redirect()->route('loans.index')->with('warning', $e->getMessage());
-            } else {
-                Log::critical($e->getMessage());
-                return redirect()->back()->with('error', 'Грешка при плащаето!');
             }
         }
     }

@@ -27,26 +27,19 @@ class LoanController extends Controller
         return view('loans.index', compact('loans'));
     }
 
-    public function create()
-    {
-        return view('loans.create');
-    }
-
     public function store(LoanRequest $request)
     {
         try {
             // Convert the borrower_name to lowercase
             $request->merge(['borrower_name' => strtolower($request->borrower_name)]);
-
             // Check if the total amount of loans for the borrower exceeds BGN 80,000
             $isTotalLoansAmountValid = $this->loanService->checkTotalLoansAmount($request->borrower_name, $request->amount);
 
             if (!$isTotalLoansAmountValid) {
-                return redirect()->back()->with('error', 'Общият размер на кредитите за този кредитополучател надхвърля 80 000 лева.');
+                //dd('here');
+                return redirect()->back()->with('warning', 'Общият размер на кредитите за този кредитополучател надхвърля 80 000 лева.');
             }
-
             $loan = Loan::create($request->all());
-
             return redirect()->route('loans.index')->with('success', 'Вие успешно взехте заем.');
         } catch (Throwable $e) {
             Log::critical($e->getMessage());
