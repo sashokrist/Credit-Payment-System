@@ -64,7 +64,7 @@ class LoanService
         $dateOneWeekAgo = now()->subWeek();
 
         Loan::where('amount', 0.00)
-            ->where('updated_at', '<=', $dateOneWeekAgo)
+            ->where('updated_at', '<', $dateOneWeekAgo)
             ->delete();
     }
 }

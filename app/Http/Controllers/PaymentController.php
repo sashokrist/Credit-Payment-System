@@ -24,11 +24,6 @@ class PaymentController extends Controller
     {
         $this->paymentService = $paymentService;
     }
-    public function createPayment()
-    {
-        $loans = Loan::orderByDesc('created_at')->get();
-        return view('payments.create', compact('loans'));
-    }
 
     public function store(PaymentRequest $request)
     {
