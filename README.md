@@ -1,42 +1,69 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 
+# 💳  Кредит Система – Laravel App
 
-## Кредит Система
+A simple credit and loan management system built using **Laravel** and **MySQL**. This app allows users to register new loans, view existing credit records, and process payments against outstanding loans.
 
-How to run
+---
 
+## 🧾 Features
+
+- Register new loans with user, amount, and term
+- View all current credit entries
+- Add payments to existing loans
+- Basic interest and installment tracking (if extended)
+- Database seeding for testing
+
+---
+
+## ⚙️ How to Run Locally
+
+### 📦 Clone the Repository
+
+```bash
 git clone git@github.com:sashokrist/Credit-Payment-System.git
+cd Credit-Payment-System
+🔧 Backend Setup
 
 composer install
-
 cp .env.example .env
-
 php artisan key:generate
+Edit the .env file to set your database credentials.
 
-Set database credentials in .env
+Then run:
 
 php artisan migrate --seed
-
 php artisan serve
+💻 Frontend Setup
 
-npm install and npm  run dev
+npm install
+npm run dev
+Access the app at: http://localhost:8000
 
-Routes:
+🗺️ Available Routes
+Here are the key routes used in the system:
 
-// Route for displaying all credits
-Route::get('/', [LoanController::class, 'index'])->name('loans.index');
+Method	URI	Controller Action	Route Name
+GET	/	LoanController@index	loans.index
+GET	/loans/create	LoanController@create	loans.create
+POST	/loans	LoanController@store	loans.store
+GET	/payments/create	PaymentController@createPayment	payments.create
+POST	/payments	PaymentController@store	payments.store
 
-// Route for displaying the form to create a new loan
-Route::get('/loans/create', [LoanController::class, 'create'])->name('loans.create');
+🛠️ Tech Stack
+Framework: Laravel
 
-// Route for handling the form submission to create a new loan
-Route::post('/loans', [LoanController::class, 'store'])->name('loans.store');
+Languages: PHP, JavaScript
 
-// Route for displaying the form to make a payment for a given loan
-Route::get('/payments/create', [PaymentController::class, 'createPayment'])->name('payments.create');
+Frontend: Blade, Bootstrap (or other)
 
-// Route for handling the form submission to make a payment for a given loan
-Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
+Database: MySQL
 
+Tools: Laravel Seeder, Artisan CLI, Laravel Mix
 
+📄 License
+This project is open source and available under the MIT License.
+
+🙌 Author
+Aleksander Keremidarov
